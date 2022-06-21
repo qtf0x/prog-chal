@@ -90,23 +90,21 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
 
     int soln_num = l1_num + l2_num;
 
-    if (soln_num == 0) {
-        return new ListNode(0);
-    } else {
-        ListNode* soln = new ListNode;
-        tempNode = soln;
+    ListNode* soln = new ListNode;
+    tempNode = soln;
 
-        for (; soln_num > 0; soln_num /= 10) {
+    for (; soln_num > 0; soln_num /= 10) {
 
-            int tempNum = soln_num % 10;
+        int tempNum = soln_num % 10;
 
-            tempNode->val = tempNum;
+        tempNode->val = tempNum;
+        if (soln_num > 0) {
             tempNode->next = new ListNode;
-            tempNode = tempNode->next;
         }
-
-        return soln;
+        tempNode = tempNode->next;
     }
+
+    return soln;
 
     return nullptr;
 }
