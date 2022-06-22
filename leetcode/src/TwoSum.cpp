@@ -15,6 +15,14 @@
 #include <unordered_map>
 #include <vector>
 
+/**
+ * @brief Finds the indices of the two numbers in nums that sum to target.
+ *
+ * @param nums a list of numbers, where at least one pair sums to target
+ * @param target a number which is the sum of some two numbers in nums
+ * @return std::vector<int> a list containing the indices in numbers than
+ * contain values summing to target
+ */
 std::vector<int> twoSum(std::vector<int>& nums, int target);
 
 int main() {

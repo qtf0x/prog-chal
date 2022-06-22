@@ -23,6 +23,16 @@ struct ListNode {
     ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
 
+/**
+ * @brief Given two non-empty linked lists containing the digits of two numbers
+ * in reverse order, add the numbers and return their sum as a similar
+ * reverse-digit linked list.
+ *
+ * @param l1 the first number represented as a linked list of digits
+ * @param l2 the second number represnted as a linked list of digits
+ * @return ListNode* the sum of the two argument numbers as a linked list of
+ * digits in reverse order
+ */
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2);
 
 int main() {
@@ -40,6 +50,7 @@ int main() {
     std::cout << l1_2->val << l1_1->val << l1->val << " + " << l2_2->val
               << l2_1->val << l2->val << " = ";
 
+    // use a stack to print out nodes in reverse
     std::stack<int> soln_nums;
     ListNode* tempNode = soln;
     while (tempNode != nullptr) {
@@ -57,9 +68,13 @@ int main() {
 }
 
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+    // a single digit in l1 or l2 is [0, 9] so with carry solution digits are
+    // only [0, 19] and the carry is either 0 or 1 (no need for more memory like
+    // an int)
     char digit1, digit2, soln_digit;
     bool carry = 0;
 
+    // allocate dummy head on the stack to avoid cleaning up dynamic memory
     ListNode soln;
     ListNode* tempNode = &soln;
 
@@ -79,6 +94,7 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
 
         soln_digit = digit1 + digit2 + carry;
 
+        // only push back least significant digit of current sum
         tempNode->next = new ListNode(soln_digit % 10);
         tempNode = tempNode->next;
 
