@@ -27,28 +27,17 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2);
 
 int main() {
     // Create test lists
-    ListNode* l1_6 = new ListNode(9);
-    ListNode* l1_5 = new ListNode(9, l1_6);
-    ListNode* l1_4 = new ListNode(9, l1_5);
-    ListNode* l1_3 = new ListNode(9, l1_4);
-    ListNode* l1_2 = new ListNode(9, l1_3);
-    ListNode* l1_1 = new ListNode(9, l1_2);
-    ListNode* l1 = new ListNode(9, l1_1);
+    ListNode* l1_2 = new ListNode(3);
+    ListNode* l1_1 = new ListNode(4, l1_2);
+    ListNode* l1 = new ListNode(2, l1_1);
 
-    ListNode* l2_3 = new ListNode(9);
-    ListNode* l2_2 = new ListNode(9, l2_3);
-    ListNode* l2_1 = new ListNode(9, l2_2);
-    ListNode* l2 = new ListNode(9, l2_1);
+    ListNode* l2_2 = new ListNode(4);
+    ListNode* l2_1 = new ListNode(6, l2_2);
+    ListNode* l2 = new ListNode(5, l2_1);
 
     ListNode* soln = addTwoNumbers(l1, l2);
 
-    // std::cout << l1_2->val << l1_1->val << l1->val << " + " << l2_2->val
-    //<< l2_1->val << l2->val << " = ";
-
-    // std::cout << l1->val << " + " << l2->val << " = ";
-
-    std::cout << l1_6->val << l1_5->val << l1_4->val << l1_3->val << l1_2->val
-              << l1_1->val << l1->val << " + " << l2_3->val << l2_2->val
+    std::cout << l1_2->val << l1_1->val << l1->val << " + " << l2_2->val
               << l2_1->val << l2->val << " = ";
 
     std::stack<int> soln_nums;
@@ -68,44 +57,34 @@ int main() {
 }
 
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-    std::string l1_digits, l2_digits;
+    char digit1, digit2, soln_digit;
+    bool carry = 0;
 
-    ListNode* tempNode = l1;
-    while (tempNode != nullptr) {
-        l1_digits.insert(0, std::to_string(tempNode->val));
-        tempNode = tempNode->next;
-    }
+    ListNode soln;
+    ListNode* tempNode = &soln;
 
-    tempNode = l2;
-    while (tempNode != nullptr) {
-        l2_digits.insert(0, std::to_string(tempNode->val));
-        tempNode = tempNode->next;
-    }
+    while (l1 || l2 || carry) {
+        digit1 = 0;
+        digit2 = 0;
 
-    int l1_num, l2_num;
-    std::from_chars(l1_digits.data(), l1_digits.data() + l1_digits.size(),
-                    l1_num);
-    std::from_chars(l2_digits.data(), l2_digits.data() + l2_digits.size(),
-                    l2_num);
-
-    int soln_num = l1_num + l2_num;
-
-    ListNode* soln = new ListNode;
-    tempNode = soln;
-
-    for (; soln_num > 0; soln_num /= 10) {
-
-        int tempNum = soln_num % 10;
-
-        tempNode->val = tempNum;
-        if (soln_num > 0) {
-            tempNode->next = new ListNode;
+        if (l1) {
+            digit1 = l1->val;
+            l1 = l1->next;
         }
+
+        if (l2) {
+            digit2 = l2->val;
+            l2 = l2->next;
+        }
+
+        soln_digit = digit1 + digit2 + carry;
+
+        tempNode->next = new ListNode(soln_digit % 10);
         tempNode = tempNode->next;
+
+        carry = soln_digit > 9;
     }
 
-    return soln;
-
-    return nullptr;
+    return soln.next;
 }
 
