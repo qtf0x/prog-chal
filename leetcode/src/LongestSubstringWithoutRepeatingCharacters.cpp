@@ -59,32 +59,3 @@ int lengthOfLongestSubstring(std::string s) {
     return max_len;
 }
 
-/* works, but really slow
-int lengthOfLongestSubstring(std::string s) {
-    std::unordered_set<char> window;
-    int max_len = 0;
-
-    size_t win_start = 0;
-    for (size_t i = 0; i < s.size(); ++i) {
-        if (window.count(s.at(i))) {
-            if (static_cast<int>(window.size()) > max_len) {
-                max_len = window.size();
-            }
-
-            window.clear();
-
-            i = s.find(s.at(i), win_start) + 1;
-            win_start = i;
-        }
-
-        window.insert(s.at(i));
-    }
-
-    if (static_cast<int>(window.size()) > max_len) {
-        max_len = window.size();
-    }
-
-    return max_len;
-}
-*/
-
