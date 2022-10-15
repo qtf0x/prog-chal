@@ -1,0 +1,12 @@
+---
+Checks: 'bugprone*, cert*, clang-analyzer*, concurrency*, cppcoreguidelines*, hicpp*, misc*, modernize*, performance*, protability*, readability*,
+        -*-braces-around-statements,
+        -readability-identifier-length,
+        -readability-isolate-declaration,
+        -readability-implicit-bool-conversion,
+        -modernize-use-trailing-return-type,
+        -clang-analyzer-security.FloatLoopCounter,
+        -cert-flp30-c,
+        -*-magic-numbers,
+        -bugprone-easily-swappable-parameters'
+FormatStyle:     file
