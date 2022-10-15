@@ -3,4 +3,10 @@ BasedOnStyle: LLVM
 IndentWidth: 4
 PointerAlignment: Left
 AlwaysBreakTemplateDeclarations: Yes
-Standard: c++20
+Standard: c++17
+BreakBeforeBraces: Custom
+BraceWrapping:
+    SplitEmptyFunction: false
+    SplitEmptyRecord: false
+    SplitEmptyNamespace: false
+AllowShortBlocksOnASingleLine: true
